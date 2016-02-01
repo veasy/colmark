@@ -13,3 +13,4 @@ app.debug = True
 
 # import routes
 import colmark.routes.index
+import colmark.routes.document
