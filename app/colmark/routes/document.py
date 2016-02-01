@@ -23,6 +23,7 @@ def handle_message(message):
 @socketio.on('add', namespace=DOCUMENT_NAMESPACE)
 def handle_add(data):
     print('Add: %s' % data)
+    emit('update', data['add'], broadcast=True)
 
 
 @socketio.on('remove', namespace=DOCUMENT_NAMESPACE)
