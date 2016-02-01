@@ -1,4 +1,4 @@
-# Colmark [![Code Climate](https://codeclimate.com/github/Veasy/colmark/badges/gpa.svg)](https://codeclimate.com/github/Veasy/colmark)
+# Colmark [![Code Climate](https://codeclimate.com/github/veasy/colmark/badges/gpa.svg)](https://codeclimate.com/github/veasy/colmark)
 Collaborative markdown editor for the web.
 
 ## About
