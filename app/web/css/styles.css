@@ -8,6 +8,12 @@ body {
 }
 
 #editor {
+	padding: 12px;
 	background: #3c3c3c;
 	color: #EEE;
+}
+
+#preview {
+	padding: 12px;
+	background: #FFF;
 }
