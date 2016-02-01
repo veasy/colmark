@@ -2,21 +2,12 @@
 
 angular.module('colmark', [])
 
-.controller('MainController', function($scope) {
-	var generateId = function()
-	{
-		var text = "";
-		var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+.controller('MainController', function($scope, Utility) {
+	var socket = Utility.connect();
+	var editor;
 
-		for( var i=0; i < 5; i++ )
-			text += possible.charAt(Math.floor(Math.random() * possible.length));
-
-		return text;
-	};
-	var socket = io.connect('/document');
-
-	socket.emit('/join',{
-		username: generateId(),
+	socket.emit('join',{
+		username: Utility.generateId(),
 		document: 'co234k688'
 	});
 
@@ -28,15 +19,54 @@ angular.module('colmark', [])
 			this.update();
 		}
 		var byId = function (id) { return document.getElementById(id); };
-		var editor = new Editor(byId("editor"), byId("preview"));
+		editor = new Editor(byId("editor"), byId("preview"));
 
-		document.getElementById("editor").addEventListener("input", function() {
-			editor.update();
-			socket.emit('/add',{
-				position: 1,
-				add: 'a',
-				document: 'co234k688'
-			});
+		document.getElementById("editor").addEventListener("input", function(e) {
+
 		}, false);
 	});
+
+	var keydownListener;
+
+	var getCharFromKeyCode = function(keyCode) {
+		if (keyCode === 8) return 'delete';
+		if (keyCode === 13) return 'enter';
+		if (keyCode === 32) return 'space';
+
+		return String.fromCharCode(keyCode);
+	};
+
+	$scope.editorFocus = function() {
+		keydownListener = document.addEventListener('keydown', function(e) {
+			console.log('keydown', getCharFromKeyCode(e.keyCode));
+			var editorDiv = document.getElementById("editor");
+			editor.update();
+			socket.emit('add',{
+				position: editorDiv.innerHTML.length,
+				add: getCharFromKeyCode(e.keyCode),
+				document: 'co234k688'
+			});
+		})
+	};
+
+	$scope.editorBlur = function() {
+		document.removeEventListener(keydownListener);
+	};
+})
+
+.factory('Utility', function() {
+	return {
+		connect: function() {
+			return io.connect('/document');
+		},
+		generateId: function() {
+			var text = "";
+			var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+			for( var i=0; i < 5; i++ )
+				text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+			return text;
+		}
+	};
 });

@@ -15,13 +15,13 @@
 
 	<script type="text/javascript" src="{{ resource }}/js/colmark.js"></script>
 </head>
-<body ng-app="colmark" ng-controller="MainController" ng-init="init()">
+<body ng-app="colmark" ng-controller="MainController">
 	<div id="content-wrap">
 		<div id="header">
 			<h1>Collaborative Markdown Editor</h1>
 		</div>
 		<div id="content">
-			<div id="editor" class="col-md-6" contenteditable="true">
+			<div id="editor" class="col-md-6" contenteditable="true" ng-focus="editorFocus()" ng-blur="editorBlur()">
 #Hello World
 This is an example document.
 			</div>
