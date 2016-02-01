@@ -32,8 +32,9 @@ angular.module('colmark', [])
 
 		document.getElementById("editor").addEventListener("input", function() {
 			editor.update();
-			socket.emit('/input',{
-				username: generateId(),
+			socket.emit('/add',{
+				position: 1,
+				add: 'a',
 				document: 'co234k688'
 			});
 		}, false);
