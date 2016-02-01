@@ -12,6 +12,7 @@ angular.module('colmark', [])
 	});
 
 	socket.on('update', function(update) {
+		console.log('update ', update);
 		var editorDiv = document.getElementById("editor");
 		editorDiv.innerHTML += update;
 		editor.update();
