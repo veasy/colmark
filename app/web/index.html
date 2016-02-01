@@ -11,16 +11,19 @@
 	<script type="text/javascript" src="lib/socket.io/socket.io.min.js"></script>
 	<script type="text/javascript" src="lib/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="lib/markdown/markdown.min.js"></script>
 
 	<script type="text/javascript" src="js/colmark.js"></script>
 </head>
-<body ng-app="colmark">
+<body ng-app="colmark" ng-controller="MainController" ng-init="init()">
 	<div id="content-wrap">
 		<div id="header">
 			<h1>Collaborative Markdown Editor</h1>
 		</div>
 		<div id="content">
-			<div id="editor" class="col-md-6"></div>
+			<div id="editor" class="col-md-6" contenteditable="true">
+				#Hello World This is an example document.
+			</div>
 			<div id="preview" class="col-md-6"></div>
 		</div>
 	</div>

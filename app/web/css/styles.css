@@ -6,3 +6,8 @@ body {
 #content-wrap {
 	padding: 20px;
 }
+
+#editor {
+	background: #3c3c3c;
+	color: #EEE;
+}
