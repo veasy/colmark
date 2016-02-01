@@ -3,6 +3,17 @@
 angular.module('colmark', [])
 
 .controller('MainController', function($scope) {
+	makeid = function()
+	{
+		var text = "";
+		var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+		for( var i=0; i < 5; i++ )
+			text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+		return text;
+	}
+
 	angular.element(document).ready(function () {
 
 
@@ -20,5 +31,10 @@ angular.module('colmark', [])
 		document.getElementById("editor").addEventListener("input", function() {
 			editor.update();
 		}, false);
+
+		var socket = io.connect('/join',{
+			username: makeid(),
+			document: 'co234k688'
+		});
 	});
 });
