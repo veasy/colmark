@@ -7,13 +7,13 @@
 	<link href="{{ resource }}/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<link href="{{ resource }}/css/styles.css" rel="stylesheet">
 
-	<script type="text/javascript" src="lib/angular/angular.min.js"></script>
-	<script type="text/javascript" src="lib/socket.io/socket.io.min.js"></script>
-	<script type="text/javascript" src="lib/jquery/jquery.min.js"></script>
-	<script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="lib/markdown/markdown.min.js"></script>
+	<script type="text/javascript" src="{{ resource }}/lib/angular/angular.min.js"></script>
+	<script type="text/javascript" src="{{ resource }}/lib/socket.io/socket.io.min.js"></script>
+	<script type="text/javascript" src="{{ resource }}/lib/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="{{ resource }}/lib/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="{{ resource }}/lib/markdown/markdown.js"></script>
 
-	<script type="text/javascript" src="js/colmark.js"></script>
+	<script type="text/javascript" src="{{ resource }}/js/colmark.js"></script>
 </head>
 <body ng-app="colmark" ng-controller="MainController" ng-init="init()">
 	<div id="content-wrap">
@@ -22,7 +22,8 @@
 		</div>
 		<div id="content">
 			<div id="editor" class="col-md-6" contenteditable="true">
-				#Hello World This is an example document.
+#Hello World
+This is an example document.
 			</div>
 			<div id="preview" class="col-md-6"></div>
 		</div>
