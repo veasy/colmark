@@ -15,7 +15,7 @@ angular.module('colmark', [])
 	};
 	var socket = io.connect('/document');
 
-	socket.emit('/join',{
+	socket.emit('join',{
 		username: generateId(),
 		document: 'co234k688'
 	});
@@ -30,9 +30,9 @@ angular.module('colmark', [])
 		var byId = function (id) { return document.getElementById(id); };
 		var editor = new Editor(byId("editor"), byId("preview"));
 
-		document.getElementById("editor").addEventListener("input", function() {
+		document.getElementById("editor").addEventListener("input", function(e) {
 			editor.update();
-			socket.emit('/add',{
+			socket.emit('add',{
 				position: 1,
 				add: 'a',
 				document: 'co234k688'
