@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Collaborative Markdown</title>
+
+	<link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/styles.css" rel="stylesheet">
+
+	<script type="text/javascript" src="lib/angular/angular.min.js"></script>
+	<script type="text/javascript" src="lib/socket.io/socket.io.min.js"></script>
+	<script type="text/javascript" src="lib/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript" src="js/colmark.js"></script>
+</head>
+<body ng-app="colmark">
+	<div id="content-wrap">
+		<div id="header">
+			<h1>Collaborative Markdown Editor</h1>
+		</div>
+		<div id="content">
+			<div id="editor" class="col-md-6"></div>
+			<div id="preview" class="col-md-6"></div>
+		</div>
+	</div>
+	<div id="footer">
+		<div class="col-md-6">Copyright &copy; 2016 Veasy</div>
+		<div class="col-md-6">Developed by Florian Bruggisser and Markus Mächler</div>
+	</div>
+</body>
+</html>
