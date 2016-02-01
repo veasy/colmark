@@ -1,6 +1,4 @@
-import erc_config
-from erc_server import socketio, app
+from colmark import config, socketio, app
 
 if __name__ == '__main__':
-    socketio.run(app=app, host='0.0.0.0',
-                 port=erc_config.ERC_SERVER_PORT)
+    socketio.run(app, port=config.SERVER_PORT)
