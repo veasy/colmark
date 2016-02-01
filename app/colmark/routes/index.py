@@ -5,4 +5,4 @@ from colmark import config
 
 @app.route('/')
 def root():
-    render_template('index', resources=config.WEB_STATIC_PATH)
+    return render_template('index.html', resource=config.WEB_STATIC_PATH)
