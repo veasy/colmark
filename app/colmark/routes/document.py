@@ -12,17 +12,17 @@ def mouse_connect():
 
 @socketio.on('message', namespace=DEFAULT_NAMESPACE)
 def handle_message(message):
-    send(message)
+    print('MSG: %s' % message)
 
 
 @socketio.on('add', namespace=DEFAULT_NAMESPACE)
 def handle_add(data):
-    send(data)
+    print('Add: %s' % data)
 
 
 @socketio.on('remove', namespace=DEFAULT_NAMESPACE)
 def handle_remove(data):
-    send(data)
+    print('Remove: %s' % data)
 
 
 @socketio.on('join', namespace=DEFAULT_NAMESPACE)
