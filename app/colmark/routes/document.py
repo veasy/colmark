@@ -2,30 +2,35 @@ from flask_socketio import send, emit
 from flask_socketio import join_room, leave_room
 from main import socketio
 
-DEFAULT_NAMESPACE = '/document'
+DOCUMENT_NAMESPACE = '/document'
 
 
-@socketio.on('connect', namespace=DEFAULT_NAMESPACE)
+@socketio.on('connect', namespace=DOCUMENT_NAMESPACE)
 def mouse_connect():
     print('Client connected')
 
 
-@socketio.on('message', namespace=DEFAULT_NAMESPACE)
+@socketio.on('disconnect', namespace=DOCUMENT_NAMESPACE)
+def test_disconnect():
+    print('Client disconnected')
+
+
+@socketio.on('message', namespace=DOCUMENT_NAMESPACE)
 def handle_message(message):
     print('MSG: %s' % message)
 
 
-@socketio.on('add', namespace=DEFAULT_NAMESPACE)
+@socketio.on('add', namespace=DOCUMENT_NAMESPACE)
 def handle_add(data):
     print('Add: %s' % data)
 
 
-@socketio.on('remove', namespace=DEFAULT_NAMESPACE)
+@socketio.on('remove', namespace=DOCUMENT_NAMESPACE)
 def handle_remove(data):
     print('Remove: %s' % data)
 
 
-@socketio.on('join', namespace=DEFAULT_NAMESPACE)
+@socketio.on('join', namespace=DOCUMENT_NAMESPACE)
 def on_join(data):
     print("hlleo world")
     username = data['username']
@@ -34,7 +39,7 @@ def on_join(data):
     send(username + ' has entered the room.', room=document)
 
 
-@socketio.on('leave', namespace=DEFAULT_NAMESPACE)
+@socketio.on('leave', namespace=DOCUMENT_NAMESPACE)
 def on_leave(data):
     username = data['username']
     document = data['document']
