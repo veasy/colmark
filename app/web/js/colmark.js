@@ -11,6 +11,12 @@ angular.module('colmark', [])
 		document: 'co234k688'
 	});
 
+	socket.on('update', function(update) {
+		var editorDiv = document.getElementById("editor");
+		editorDiv.innerHTML += update;
+		editor.update();
+	});
+
 	angular.element(document).ready(function () {
 		function Editor(input, preview) {
 			this.update = function () {
