@@ -1,3 +1,3 @@
 #!/bin/sh
-cd ./backend
+cd ./app
 python main.py

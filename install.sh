@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
-cd ./backend
+cd ./app
 sudo pip install -r requirements.txt
