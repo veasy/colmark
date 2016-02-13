@@ -67,7 +67,7 @@ angular.module('colmark', [])
 			return io.connect('/document');
 		},
 		generateId: function() {
-			var text = "";
+			var text = "user-";
 			var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
 			for( var i=0; i < 5; i++ )
