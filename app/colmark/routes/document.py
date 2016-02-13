@@ -6,18 +6,24 @@ DOCUMENT_NAMESPACE = '/document'
 
 
 @socketio.on('connect', namespace=DOCUMENT_NAMESPACE)
-def mouse_connect():
+def on_connect():
     print('Client connected')
 
 
 @socketio.on('disconnect', namespace=DOCUMENT_NAMESPACE)
-def test_disconnect():
+def on_disconnect():
     print('Client disconnected')
 
 
 @socketio.on('message', namespace=DOCUMENT_NAMESPACE)
 def handle_message(message):
     print('MSG: %s' % message)
+
+
+@socketio.on('echo', namespace=DOCUMENT_NAMESPACE)
+def handle_echo(message):
+    print('ECHO: %s' % message)
+    emit('echo', 'This was your message: %s' % message)
 
 
 @socketio.on('add', namespace=DOCUMENT_NAMESPACE)

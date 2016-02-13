@@ -1,0 +1,154 @@
+<html>
+<head>
+  <script>
+  onload = function () {
+    var inputBox = document.getElementById('myInput');
+    inputBox.oninput = function(e){
+      console.log('Input: ' + doGetCaretPosition(inputBox));
+    };
+
+    inputBox.onkeypress = function(e)
+    {
+      console.log('Pressed: ' + String.fromCharCode(e.keyCode));
+    };
+
+    inputBox.onpropertychange = inputBox.oninput; // for IE8
+    // e.onchange = e.oninput; // FF needs this in <select><option>...
+    // other things for onload()
+
+    var divInputBox = document.getElementById('myDivInput');
+
+    divInputBox.oninput = function(e){
+      //console.log('Input: ' + getCaretPosition(divInputBox));
+    };
+
+    divInputBox.onkeypress = function(e)
+    {
+      var pos = getCaretPosition(divInputBox);
+      var c = String.fromCharCode(e.keyCode);
+
+      //remove
+      if(e.keyCode != 13)
+      {
+        updateRemote(c, pos, false);
+        console.log('added "'+ c + '" at ' + getCaretPosition(divInputBox));
+      }
+    };
+
+    divInputBox.onkeyup = function(e)
+    {
+      var pos = getCaretPosition(divInputBox);
+
+      switch(e.keyCode)
+      {
+        //back
+        case 8:
+        console.log('removed key at ' + pos);
+        updateRemote('', pos, true);
+        break;
+
+        //tab
+        case 9:
+        console.log('added "tab" at ' + pos);
+        break;
+
+        //enter
+        case 13:
+        console.log('added "enter" at ' + pos);
+        break;
+      }
+    };
+
+  };
+
+  function updateRemote(v, pos, back)
+  {
+    var inputBox = document.getElementById('myInput');
+    var text = inputBox.value;
+    var l = text.length
+
+    var preText = text.substr(0, pos);
+    var postText = text.substr(pos, l);
+
+    var result = "";
+
+    if(back)
+    {
+      result = preText.substr(0, preText.length-1) + postText;
+    }
+    else{
+      result = preText + v + postText;
+    }
+    inputBox.value = result;
+  }
+
+  /*
+  ** Returns the caret (cursor) position of the specified text field.
+  ** Return value range is 0-oField.value.length.
+  */
+  function doGetCaretPosition (oField) {
+
+    // Initialize
+    var iCaretPos = 0;
+
+    // IE Support
+    if (document.selection) {
+
+      // Set focus on the element
+      oField.focus();
+
+      // To get cursor position, get empty selection range
+      var oSel = document.selection.createRange();
+
+      // Move selection start to 0 position
+      oSel.moveStart('character', -oField.value.length);
+
+      // The caret position is selection length
+      iCaretPos = oSel.text.length;
+    }
+
+    // Firefox support
+    else if (oField.selectionStart || oField.selectionStart == '0')
+    iCaretPos = oField.selectionStart;
+
+    // Return results
+    return iCaretPos;
+  }
+
+  function getCaretPosition(editableDiv) {
+    var caretPos = 0,
+    sel, range;
+    if (window.getSelection) {
+      sel = window.getSelection();
+      if (sel.rangeCount) {
+        range = sel.getRangeAt(0);
+        if (range.commonAncestorContainer.parentNode == editableDiv) {
+          caretPos = range.endOffset;
+        }
+      }
+    } else if (document.selection && document.selection.createRange) {
+      range = document.selection.createRange();
+      if (range.parentElement() == editableDiv) {
+        var tempEl = document.createElement("span");
+        editableDiv.insertBefore(tempEl, editableDiv.firstChild);
+        var tempRange = range.duplicate();
+        tempRange.moveToElementText(tempEl);
+        tempRange.setEndPoint("EndToEnd", range);
+        caretPos = tempRange.text.length;
+      }
+    }
+    return caretPos;
+  }
+  </script>
+</head>
+
+<body>
+  <input type=text id=myInput value="Hello World"/>
+  <br />
+  <hr />
+  <br />
+  <div id=myDivInput onClick="this.contentEditable='true';" tabindex="1">
+    Hello World
+  </div>
+</body>
+</html>
