@@ -64,7 +64,7 @@ class DocumentSyncTest(BaseTestCase):
         self.doc.emit('echo', 'hello world')
         self.client.wait(seconds=1)
 
-        # self.assertTrue(RECEIVED.get('on_echo_response', False))
+        self.assertTrue(RECEIVED.get('on_echo_response', False))
 
     def test_single_client(self):
         self.doc.on('userlist', on_userlist_response)
@@ -77,7 +77,7 @@ class DocumentSyncTest(BaseTestCase):
         self.doc.emit('leave', {'username': 'Florian', 'document': DOCUMENT_ID})
 
         self.assertTrue(RECEIVED.get('on_userlist_response', False))
-        # self.assertTrue(RECEIVED.get('on_document_response', False))
+        self.assertTrue(RECEIVED.get('on_document_response', False))
 
 
 if __name__ == '__main__':
