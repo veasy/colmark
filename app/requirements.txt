@@ -1,4 +1,4 @@
-flask
-flask-socketio
-flask-cors
-socketIO-client
+flask==0.10.1
+flask-socketio==2.0
+flask-cors==2.0.1
+socketIO-client==0.6.5
