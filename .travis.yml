@@ -12,8 +12,8 @@ python:
 install:
   - "pip install --upgrade pip"
   - "cd app"
-  - "pip install -r requirements.txt"
-#  - "pip install git+https://github.com/bodgit/socketIO-client --upgrade" # install newest socketIO client
+  - "sudo pip install -r requirements.txt"
+  - "sudo pip install git+https://github.com/veo-labs/socketIO-client --upgrade" # install fixed socketIO client
 
 before_script:
   - "export DISPLAY=:99.0"
@@ -27,4 +27,4 @@ before_script:
 # command to run tests
 script:
   - "python tests/simple_test.py"
-#  - "python tests/document_sync_test.py"
+  - "python tests/document_sync_test.py"
