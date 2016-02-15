@@ -1,4 +1,4 @@
-from colmark import app
+from colmark.app import app
 from flask import render_template
 
 from colmark import config

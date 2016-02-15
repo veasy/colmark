@@ -1,4 +1,4 @@
-from colmark import socketio
+from colmark.app import socketio
 from flask import request
 
 
