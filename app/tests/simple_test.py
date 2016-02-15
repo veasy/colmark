@@ -20,3 +20,6 @@ class SimpleTest(unittest.TestCase):
             pass
 
         self.assertEqual(200, res, "Colmark is down!")
+
+if __name__ == '__main__':
+    unittest.main()
