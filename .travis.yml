@@ -20,6 +20,7 @@ before_script:
   - sleep 3 # give xvfb some time to start
   - "python main.py &"  # start a Web server
   - sleep 3 # give Web server some time to bind to sockets, etc
+  - export PYTHONPATH="${PYTHONPATH}:$(pwd)" # add current dict to pythonpath
 
 # command to run tests
 script:
