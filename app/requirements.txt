@@ -1,3 +1,5 @@
+six==1.10.0
+websocket-client==0.35.0
 flask==0.10.1
 flask-socketio==2.0
 flask-cors==2.0.1
