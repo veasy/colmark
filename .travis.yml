@@ -13,7 +13,7 @@ install:
   - "pip install --upgrade pip"
   - "cd app"
   - "pip install -r requirements.txt"
-#  - "pip install git+https://github.com/veo-labs/socketIO-client --upgrade" # install fixed socketIO client
+  - "pip install git+https://github.com/veo-labs/socketIO-client --upgrade" # install fixed socketIO client
 
 before_script:
   - "export DISPLAY=:99.0"
