@@ -55,13 +55,14 @@ class DocumentSyncTest(BaseTestCase):
         self.client.disconnect()
 
     def dummy_test(self):
+        out('hello world from dummy test')
         self.assertTrue(True)
 
     def test_echo(self):
         self.doc.on('echo', on_echo_response)
 
         self.doc.emit('echo', 'hello world')
-        self.client.wait(seconds=3)
+        self.client.wait(seconds=1)
 
         self.assertTrue(RECEIVED.get('on_echo_response', False))
 
@@ -71,7 +72,7 @@ class DocumentSyncTest(BaseTestCase):
 
         self.doc.emit('join', {'username': 'Florian', 'document': DOCUMENT_ID})
 
-        self.client.wait(seconds=3)
+        self.client.wait(seconds=1)
 
         self.doc.emit('leave', {'username': 'Florian', 'document': DOCUMENT_ID})
 
