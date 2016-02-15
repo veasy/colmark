@@ -1,4 +1,4 @@
-from flask_socketio import send, emit
+from flask_socketio import emit
 from flask_socketio import join_room, leave_room
 from main import socketio
 
@@ -39,11 +39,14 @@ def handle_remove(data):
 
 @socketio.on('join', namespace=DOCUMENT_NAMESPACE)
 def on_join(data):
-    print("hlleo world")
     username = data['username']
     document = data['document']
     join_room(document)
-    send(username + ' has entered the room.', room=document)
+    print ('%s has entered the room (%s).' % (username, document))
+
+    # broadcast new userlist and send back current document
+    emit('userlist', ['Markus', username], room=document)
+    emit('document', 'Lorem ipsum dolor sit amet')
 
 
 @socketio.on('leave', namespace=DOCUMENT_NAMESPACE)
@@ -51,4 +54,4 @@ def on_leave(data):
     username = data['username']
     document = data['document']
     leave_room(document)
-    send(username + ' has left the room.', room=document)
+    print ('%s has left the room (%s).' % (username, document))
