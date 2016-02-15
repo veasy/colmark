@@ -54,10 +54,6 @@ class DocumentSyncTest(BaseTestCase):
         super(DocumentSyncTest, self).tearDown()
         self.client.disconnect()
 
-    def dummy_test(self):
-        out('hello world from dummy test')
-        self.assertTrue(True)
-
     def test_echo(self):
         self.doc.on('echo', on_echo_response)
 

@@ -26,4 +26,5 @@ before_script:
 
 # command to run tests
 script:
-  - "python tests/document_sync_test.py"
+  - "python tests/simple_test.py"
+#  - "python tests/document_sync_test.py"
