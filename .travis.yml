@@ -1,0 +1,26 @@
+notifications:
+  email: false
+language: python
+python:
+  - "2.7"
+#  - "3.4"
+#  - "3.5.0b3"
+#  - "3.5-dev"
+#  - "nightly"
+
+# command to install dependencies
+install:
+  - "pip install --upgrade pip"
+  - "pip install -r requirements.txt"
+
+before_script:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3 # give xvfb some time to start
+  - "cd app"
+  - "python main.py &"  # start a Web server
+  - sleep 3 # give Web server some time to bind to sockets, etc
+
+# command to run tests
+script:
+  - "python test/document_sync_test.py"
